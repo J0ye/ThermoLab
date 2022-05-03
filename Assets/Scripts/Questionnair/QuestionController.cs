@@ -15,6 +15,7 @@ public class QuestionController : MonoBehaviour
 
     protected List<SelectionOption> spawnedOptions = new List<SelectionOption>();
     protected RectTransform rt;
+    protected Tween activeTween;
     protected Text titel;
     protected Text description;
     protected Image image;
@@ -65,11 +66,13 @@ public class QuestionController : MonoBehaviour
         Vector3 offsetPos = new Vector3(Screen.width*2, startpos.y, startpos.z);
         rt.position = offsetPos;
         gameObject.SetActive(true);
-        rt.DOMoveX(0 + Screen.width/2, animationDuration);
+        CancelActiveTween();
+        activeTween = rt.DOMoveX(0 + Screen.width/2, animationDuration);
     }
 
     public void Close()
     {
+        CancelActiveTween();
         StartCoroutine(AsynClose());
     }
 
@@ -88,9 +91,21 @@ public class QuestionController : MonoBehaviour
     {
         Vector3 startpos = rt.position;
         Vector3 offsetPos = new Vector3(-Screen.width, startpos.y, startpos.z);
-        Tween temp = rt.DOMoveX(offsetPos.x, animationDuration);
-        yield return temp.WaitForCompletion();
-        //gameObject.SetActive(false);
+        activeTween = rt.DOMoveX(offsetPos.x, animationDuration);
+        yield return activeTween.WaitForCompletion();
+        gameObject.SetActive(false);
+    }
+
+    protected void CancelActiveTween()
+    {
+        if(activeTween != null)
+        {
+            if(activeTween.IsPlaying())
+            {
+                activeTween.Complete();
+            }
+            activeTween = null;
+        }
     }
 
     protected void SpawnOptions()

@@ -52,10 +52,13 @@ public class QuestionaireController : MonoBehaviour
 
     public void Next()
     {
-        questions[activeQuestion].Close();
-        activeQuestion++;
-        activeQuestion = Mathf.Clamp(activeQuestion, 0, questions.Count-1);
-        questions[activeQuestion].Open();
+        if (activeQuestion < questions.Count)
+        {
+            questions[activeQuestion].Close();
+            activeQuestion++;
+            activeQuestion = Mathf.Clamp(activeQuestion, 0, questions.Count - 1);
+            questions[activeQuestion].Open();
+        }
     }
 
     public void Previous()
