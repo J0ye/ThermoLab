@@ -1,0 +1,8 @@
+<svg id="AR_Button" data-name="AR Button" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+  <circle id="Ellipse_11" data-name="Ellipse 11" cx="15" cy="15" r="15" fill="#3b90ff"/>
+  <g id="Gruppe_24" data-name="Gruppe 24" transform="translate(6.432 39.342)">
+    <path id="Pfad_67" data-name="Pfad 67" d="M22.669-24.821l-7.154,3.658v8.427l7.154-3.658Z" transform="translate(-6.947 -3.552)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path id="Pfad_68" data-name="Pfad 68" d="M1.414-24.821l7.154,3.658v8.427L1.414-16.393Z" transform="translate(0 -3.552)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path id="Pfad_69" data-name="Pfad 69" d="M15.722-28.373,8.568-32.031,1.414-28.373l7.154,3.658Z" transform="translate(0)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  </g>
+</svg>

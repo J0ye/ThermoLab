@@ -115,11 +115,13 @@ public class QuestionController : MonoBehaviour
         {
             GameObject opt = Instantiate(optionPrefab, transform);
             Vector3 p = opt.GetComponent<RectTransform>().position;
-            opt.GetComponent<RectTransform>().position = new Vector3(p.x, p.y - (margin * spawnedOptions.Count), p.z);
+            var padding = opt.GetComponent<RectTransform>().sizeDelta.y * margin;
+            opt.GetComponent<RectTransform>().position = new Vector3(p.x, p.y - (padding * counter), p.z);
             SelectionOption detail = opt.GetComponent<SelectionOption>();
             spawnedOptions.Add(detail);
             detail.SetText(option);
             counter++;
+            //margin * spawnedOptions.Count
         }
     }
 }
