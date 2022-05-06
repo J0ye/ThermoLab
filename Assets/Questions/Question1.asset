@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Question1
   m_EditorClassIdentifier: 
   titel: Question 1
-  description: This da description
+  description: This the description
+  image: {fileID: 0}
   correctOptions: 00000000
   options:
   - 'this right '

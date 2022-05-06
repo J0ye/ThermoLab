@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public class SelectionOption : ImageColorSwitch, IPointerDownHandler
 {
+    public bool keepColor = false;
     public bool selected = false;
+
+    public UnityEvent OnSelect = new UnityEvent();
 
     protected Text option;
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        SwitchColor();
+        if(!keepColor) SwitchColor();
         ExecuteOnSelection();
-        
+        OnSelect.Invoke();
     }
 
     public void SetText(string value)

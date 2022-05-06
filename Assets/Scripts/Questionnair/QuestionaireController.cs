@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class QuestionaireController : MonoBehaviour
 {
+    public StepCountManager stepCount;
     public List<QuestionController> questions = new List<QuestionController>();
     public bool closeOnStart = true;
 
@@ -14,6 +15,7 @@ public class QuestionaireController : MonoBehaviour
     {
         Close();
         if (!closeOnStart) Open();
+        stepCount.UpdateDisplay(questions.Count);
     }
 
     // Update is called once per frame
@@ -52,7 +54,7 @@ public class QuestionaireController : MonoBehaviour
 
     public void Next()
     {
-        if (activeQuestion < questions.Count)
+        if (activeQuestion < questions.Count-1)
         {
             questions[activeQuestion].Close();
             activeQuestion++;

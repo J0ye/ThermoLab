@@ -14,7 +14,6 @@ public class MenuManager : MonoBehaviour
     protected void Start()
     {
         UpdateState();
-        Debug.Log("A");
         loadedScene = GetActiveSceneIndex();
     }
 
