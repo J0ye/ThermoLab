@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class LookAtPlayer : MonoBehaviour
 {
     public string lookFor = "Player";
+    public float rotationOffset = 0f;
 
     protected GameObject player;
 
     // Start is called before the first frame update
     protected void Awake()
     {
-        if (player == null && lookFor != "")
-        {
-            player = GameObject.FindGameObjectWithTag(lookFor);
-        }
+        SetPlayer();
     }
 
     // Update is called once per frame
@@ -22,16 +21,24 @@ public class LookAtPlayer : MonoBehaviour
     {
         if (player == null)
         {
-            Debug.LogError("There is no " + lookFor + " object in the scene. Help me here: " + gameObject.name);
-            if(GameObject.FindGameObjectWithTag(lookFor) != null)
-            {
-                player = GameObject.FindGameObjectWithTag(lookFor);
-            }
+            SetPlayer();
+            transform.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z + rotationOffset);
         }
-
-        if(player != null)
+        else
         {
             transform.LookAt(player.transform.position);
+        }
+    }
+
+    protected void SetPlayer()
+    {
+        if (!string.IsNullOrWhiteSpace(lookFor))
+        {
+            player = GameObject.FindGameObjectWithTag(lookFor);
+        }
+        else
+        {
+            Debug.LogError("There is no " + lookFor + " object in the scene. Help me here: " + gameObject.name);
         }
     }
 }
