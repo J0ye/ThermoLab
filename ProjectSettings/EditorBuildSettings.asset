@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UItest.unity
     guid: 0616a9dd2145f7640837a75f3b6ff77a
+  - enabled: 1
+    path: Assets/Scenes/Measure.unity
+    guid: 139e82c00a93d9348a582efead2fadab
+  - enabled: 1
+    path: Assets/Scenes/Measurment.unity
+    guid: e175a0b34e647fb4697aadc4a90c6038
   m_configObjects: {}
