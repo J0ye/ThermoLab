@@ -8,11 +8,11 @@ public class PopUpManager : MenuManager
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void Close()
     {
-        SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(1).name);
+        Scene popupScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1); 
+        SceneManager.UnloadSceneAsync(popupScene.name);
     }
 }

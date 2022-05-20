@@ -11,7 +11,7 @@ public class MenuManager : MonoBehaviour
     protected int loadedScene;
 
     // Start is called before the first frame update
-    protected void Start()
+    protected virtual void Start()
     {
         UpdateState();
         loadedScene = GetActiveSceneIndex();
@@ -60,7 +60,7 @@ public class MenuManager : MonoBehaviour
         return SceneManager.GetActiveScene().buildIndex;
     }
 
-    protected void UpdateState()
+    protected virtual void UpdateState()
     {
         foreach(GameObject obj in itemList)
         {

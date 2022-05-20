@@ -18,7 +18,7 @@ public class StepCountManager : MonoBehaviour
         int counter = 1;
         foreach(SwitchImage si in steps)
         {
-            Debug.Log(counter);
+            //Debug.Log(counter);
             if(val < counter)
             {
                 si.SetDisplayState(false);

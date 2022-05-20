@@ -1230,12 +1230,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1846284703}
+      objectReference: {fileID: 0}
     - target: {fileID: 985786087643210957, guid: 47269b80ea6b5c9489090020d3dd4e9a,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1846284703}
+      objectReference: {fileID: 0}
     - target: {fileID: 985786087643210957, guid: 47269b80ea6b5c9489090020d3dd4e9a,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -1391,6 +1391,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cogwheel
       objectReference: {fileID: 0}
+    - target: {fileID: 985786087643210963, guid: 47269b80ea6b5c9489090020d3dd4e9a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47269b80ea6b5c9489090020d3dd4e9a, type: 3}
 --- !u!224 &881193710 stripped
@@ -1417,7 +1422,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &905075359
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2589,7 +2594,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1846284698}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3ba37e17714cda49ad90b07ec4109e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 685721b60ee0d9b409efbf1b9853c6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemList:
@@ -2597,6 +2602,21 @@ MonoBehaviour:
   - {fileID: 1031240895}
   - {fileID: 100997394}
   state: 1
+  OnStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1846284703}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: AddScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &1866227259 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6359218293338116012, guid: b1cff0f5c1c9a2a438a313303de942da,

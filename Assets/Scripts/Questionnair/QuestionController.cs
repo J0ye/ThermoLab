@@ -30,8 +30,6 @@ public class QuestionController : MonoBehaviour
 
     private void Update()
     {
-
-
         if (Input.GetKeyDown(KeyCode.R))
         {
             Open();

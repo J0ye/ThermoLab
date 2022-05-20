@@ -29,11 +29,6 @@ public class LoginManager : MonoBehaviour
         LoadUserData();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     public void CreateNewUser()
     {
         if(CheckInputField(newNameInput, newPasswordInput) ||
@@ -120,37 +115,5 @@ public class LoginManager : MonoBehaviour
         string invalidRegStr = string.Format(@"([{0}]*\.+$)|([{0}]+)", invalidChars);
 
         return System.Text.RegularExpressions.Regex.Replace(name, invalidRegStr, "_");
-    }
-}
-
-[Serializable]
-public class User
-{
-    public Guid id;
-    public string name;
-    public string password;
-
-    public User()
-    {
-        id = Guid.NewGuid();
-        name = "empty";
-        password = "empty";
-    }
-
-    public User(string newName, string newPassword)
-    {
-        id = Guid.NewGuid();
-        name = newName;
-        password = newPassword;
-    }
-
-    public bool Compare(User other)
-    {
-        if(name == other.name && password == other.password)
-        {
-            return true;
-        }
-
-        return false;
     }
 }
