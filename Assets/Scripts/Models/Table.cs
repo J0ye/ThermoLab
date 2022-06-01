@@ -7,10 +7,14 @@ using UnityEngine.UI;
 [Serializable]
 public class Table
 {
+    public string name;
+    public string user;
     public Column[] fields;
 
-    public Table(List<Row> rows)
+    public Table(List<Row> rows, string ident, User us)
     {
+        name = ident;
+        user = us.name;
         fields = new Column[0];
         int rowIndex = 0;
         foreach (Row row in rows)

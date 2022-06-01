@@ -13,6 +13,7 @@ public class DrawerManager : MenuManager
 
     [Header("Menu Options")]
     public GameObject exitButton;
+    public bool showExitButton = false;
 
     protected Tween lastTween;
     protected RectTransform rt;
@@ -26,7 +27,7 @@ public class DrawerManager : MenuManager
         startPos = rt.anchoredPosition;
         openPosition = new Vector2(startPos.x + rt.rect.width/2, openPosition.y);
 
-        if(SceneManager.GetActiveScene().buildIndex == 0)
+        if(SceneManager.GetActiveScene().buildIndex == 0 && !showExitButton)
         {
             exitButton.SetActive(false);
         }

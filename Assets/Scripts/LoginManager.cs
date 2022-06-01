@@ -80,6 +80,7 @@ public class LoginManager : MonoBehaviour
             if(u.Compare(temp))
             {
                 OnLoginSuccsessfull.Invoke();
+                Session.Instance().user = temp;
                 return;
             }
         }

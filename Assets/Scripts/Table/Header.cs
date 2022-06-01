@@ -43,8 +43,11 @@ public class Header : MonoBehaviour
 
     public void SaveInput()
     {
-        Session.Instance().table = new Table(rows);
-        Debug.Log(Session.Instance().ToJSON());
+        if(Session.Instance().user != null)
+        {
+            Session.Instance().AddTable(new Table(rows, gameObject.name, Session.Instance().user));
+            Debug.Log(Session.Instance().ToJSON());
+        }
     }
 
     protected void SetUpList()

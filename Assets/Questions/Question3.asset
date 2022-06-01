@@ -12,14 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d5395fc472137438df70852f363330, type: 3}
   m_Name: Question3
   m_EditorClassIdentifier: 
-  titel: An egg
-  description: is this an egg
-  image: {fileID: 21300000, guid: 7882187f44a9afc45b03aa5e81bed6b5, type: 3}
-  correctOptions: 00000000
+  titel: Frage 3
+  description: "Welche Aussagen sind f\xFCr den Begriff \u201EW\xE4rmetransport\u201C
+    zutreffend? "
+  image: {fileID: 0}
+  correctOptions: 0200000003000000
   options:
-  - yes
-  - no
-  - its cheese
-  - maybe
-  - 'all '
-  - no, but down here
+  - "F\xFCr einen W\xE4rmetransport ist zwingend ein Stoff notwendig, welcher transportiert
+    wird. W\xE4r-meleitung ist daher keine Art des W\xE4rmetransports, da hierbei
+    kein Stoff transportiert wird."
+  - "Kondensation oder Kristalisierung sind die zwei der drei grundlegenden Arten
+    des W\xE4rmetrans-ports, bei denen die \xC4nderung des Agregatzustandes verwendet
+    wird."
+  - "W\xE4rmestr\xF6mung oder Konvektion und W\xE4rmestrahlung sind zwei der drei
+    grundlegenden Ar-ten des W\xE4rmetransports."
+  - "W\xE4rmeleitung ist eine Art des stoffgebundenen W\xE4rmetransports."
