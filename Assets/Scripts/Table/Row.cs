@@ -26,7 +26,6 @@ public class Row : MonoBehaviour
                     lines.Add(temp);
                 }
             }
-
         }
     }
 }

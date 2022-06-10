@@ -21,6 +21,7 @@ public class LoginManager : MonoBehaviour
     public UnityEvent OnLoginSuccsessfull = new UnityEvent();
     public UnityEvent OnLoginUnsuccsessfull = new UnityEvent();
     public UnityEvent OnRegister = new UnityEvent();
+    public UnityEvent OnLogout = new UnityEvent();
 
     protected List<User> userData;
     // Start is called before the first frame update
@@ -73,20 +74,74 @@ public class LoginManager : MonoBehaviour
             return;
         }
 
+        // Temporary user build from input
         User temp = new User(nameInput.text, passwordInput.text);
 
         foreach(User u in userData)
         {
             if(u.Compare(temp))
             {
+                // There exists a user for this name and password. U represents the user data coresponding to user input
                 OnLoginSuccsessfull.Invoke();
-                Session.Instance().user = temp;
+                // Set the session data manualy to the logged in user, if no session data can be loaded
+                Session.Instance().user = u;
+                Debug.Log(u.id);
+                LoadSessionData();
+                Session.Instance().user = u;
+                Debug.Log("Login to user: " + Session.Instance().user.id);
                 return;
             }
         }
 
         Debug.Log("No login");
         OnLoginUnsuccsessfull.Invoke();
+    }
+
+    public void Logout()
+    {
+        SaveSessionData();
+        if(Session.Instance().user == null)
+        {
+            Debug.LogWarning("No user is logged in. Wont run logout.");
+            return;
+        }
+
+        Session.Instance().Clear();
+    }
+
+    public void SaveSessionData()
+    {
+        string id = GetUserIDAsValidFileName();
+        DirectoryInfo directory = Directory.CreateDirectory(Application.persistentDataPath + @"\Sessions");
+        if (Session.Instance().user != null)
+        {
+            string filename = directory.FullName + @"\" + id + ".json";
+            Debug.Log("Saving session data to: " + filename);
+            File.WriteAllText(filename, Session.Instance().ToJSON());
+        }
+    }
+
+    public bool LoadSessionData()
+    {
+        if (Session.Instance().user == null)
+        {
+            Debug.LogWarning("Tried to load session data without a user.");
+            return false;
+        }
+
+        string id = GetUserIDAsValidFileName() + ".json";
+
+        DirectoryInfo directoryInfo = new DirectoryInfo(Application.persistentDataPath + @"\Sessions");
+        foreach (var file in directoryInfo.GetFiles(id))
+        {
+            Debug.Log("File content");
+            string txt = File.ReadAllText(file.FullName);
+            Debug.Log(txt);
+            Session.FromJson(txt);
+            return true;
+        }
+
+        return false;
     }
 
     private bool CheckInputField(InputField target)
@@ -108,6 +163,16 @@ public class LoginManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    private string GetIDAsValidFileName(string id)
+    {
+        return MakeValidFileName(id);
+    }
+
+    private string GetUserIDAsValidFileName()
+    {
+        return MakeValidFileName(Session.Instance().user.id.ToString());
     }
 
     private static string MakeValidFileName(string name)
