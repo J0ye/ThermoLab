@@ -85,7 +85,6 @@ public class LoginManager : MonoBehaviour
                 OnLoginSuccsessfull.Invoke();
                 // Set the session data manualy to the logged in user, if no session data can be loaded
                 Session.Instance().user = u;
-                Debug.Log(u.id);
                 LoadSessionData();
                 Session.Instance().user = u;
                 Debug.Log("Login to user: " + Session.Instance().user.id);
@@ -132,13 +131,16 @@ public class LoginManager : MonoBehaviour
         string id = GetUserIDAsValidFileName() + ".json";
 
         DirectoryInfo directoryInfo = new DirectoryInfo(Application.persistentDataPath + @"\Sessions");
-        foreach (var file in directoryInfo.GetFiles(id))
+        if (directoryInfo.Exists)
         {
-            Debug.Log("File content");
-            string txt = File.ReadAllText(file.FullName);
-            Debug.Log(txt);
-            Session.FromJson(txt);
-            return true;
+            foreach (var file in directoryInfo.GetFiles(id))
+            {
+                Debug.Log("File content");
+                string txt = File.ReadAllText(file.FullName);
+                Debug.Log(txt);
+                Session.FromJson(txt);
+                return true;
+            }
         }
 
         return false;

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 [ExecuteInEditMode]
 public class Header : MonoBehaviour
@@ -12,7 +11,6 @@ public class Header : MonoBehaviour
     void Start()
     {
         SetUpList();
-        SceneManager.activeSceneChanged += ChangedActiveScene;
         LoadInputFromSession();
     }
 
@@ -36,15 +34,10 @@ public class Header : MonoBehaviour
     {
         return rows.Count * rows[0].lines.Count;
     }
-
-    public void ChangedActiveScene(Scene current, Scene next)
-    {
-        //SaveInput();
-    }
     
     public void LoadInputFromSession()
     {
-        if(Session.Instance().user != null)
+        if(Session.Instance().user != null && Session.Instance().tables.Length > 0)
         {
             Table[] tables = Session.Instance().tables;
             for (int i = 0; i < tables.Length; i++)
@@ -59,14 +52,18 @@ public class Header : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void SaveInput()
-    {
-        if(Session.Instance().user != null)
+        else
         {
-            Session.Instance().AddTable(new Table(rows, gameObject.name, Session.Instance().user));
-            Debug.Log(Session.Instance().ToJSON());
+            try
+            {
+                Debug.LogWarning("Cant load table data");
+                Debug.Log("User name " + Session.Instance().user.name);
+                Debug.Log("Table Length: " + Session.Instance().tables.Length);
+            }
+            catch(System.NullReferenceException e)
+            {
+                Debug.Log(e);
+            }
         }
     }
 

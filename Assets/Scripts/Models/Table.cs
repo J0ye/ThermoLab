@@ -38,6 +38,19 @@ public class Table
         }
     }
 
+    public bool EditColumn(Column newValues)
+    {
+        for(int i = 0; i < columns.Length; i++)
+        {
+            if(columns[i].Compare(newValues))
+            {
+                columns[i].content = newValues.content;
+                return true;
+            }
+        }
+        return false;
+    }
+
     public string ToJSON()
     {
         string msg = JsonUtility.ToJson(this);
@@ -57,5 +70,18 @@ public class Column
         row = n_row;
         line = n_line;
         content = text;
+    }
+    /// <summary>
+    /// Compares this column to the target column
+    /// </summary>
+    /// <param name="target">The other target column</param>
+    /// <returns>Returns true if both columns have the same row and line number.</returns>
+    public bool Compare(Column target)
+    {
+        if(target.line == line && target.row == row)
+        {
+            return true;
+        }
+        return false;
     }
 }

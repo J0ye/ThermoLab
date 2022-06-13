@@ -33,17 +33,18 @@ public class Session
         // CheckForTable returns the index of a fitting table in the tables array in the out parameter indexer.
         if(!CheckForTable(newTable, out indexer))
         {
+            Debug.Log("Saving table " + newTable.name + " as new.");
             Table[] temp = new Table[tables.Length + 1];
             for(int i = 0; i < tables.Length; i++)
             {
                 temp[i] = tables[i];
             }
-            Debug.Log(temp.Length + " | " + tables.Length);
             temp[tables.Length] = newTable;
             tables = temp;
         }
         else
         {
+            Debug.Log("Overriding table " + newTable.name);
             tables[indexer] = newTable;
         }
     }
@@ -65,6 +66,7 @@ public class Session
         if(tables == null)
         {
             tables = new Table[0];
+            Debug.Log("Created new array for tables in session.");
         }
         for(int i = 0; i < tables.Length; i++)
         {
