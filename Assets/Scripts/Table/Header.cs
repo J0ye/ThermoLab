@@ -13,6 +13,7 @@ public class Header : MonoBehaviour
     {
         SetUpList();
         SceneManager.activeSceneChanged += ChangedActiveScene;
+        LoadInputFromSession();
     }
 
     public InputField GetFieldAt(int row, int line)
@@ -38,13 +39,35 @@ public class Header : MonoBehaviour
 
     public void ChangedActiveScene(Scene current, Scene next)
     {
-        SaveInput();
+        //SaveInput();
+    }
+    
+    public void LoadInputFromSession()
+    {
+        if(Session.Instance().user != null)
+        {
+            Table[] tables = Session.Instance().tables;
+            for (int i = 0; i < tables.Length; i++)
+            {
+                if (tables[i].name == gameObject.name)
+                {
+                    for (int j = 0; j < tables[i].columns.Length; j++)
+                    {
+                        Column target = tables[i].columns[j];
+                        rows[target.row].lines[target.line].text = target.content;
+                    }
+                }
+            }
+        }
     }
 
     public void SaveInput()
     {
-        Session.Instance().table = new Table(rows);
-        Debug.Log(Session.Instance().ToJSON());
+        if(Session.Instance().user != null)
+        {
+            Session.Instance().AddTable(new Table(rows, gameObject.name, Session.Instance().user));
+            Debug.Log(Session.Instance().ToJSON());
+        }
     }
 
     protected void SetUpList()

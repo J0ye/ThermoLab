@@ -37,9 +37,16 @@ public class MenuManager : MonoBehaviour
         {
             if (loadedScene != GetActiveSceneIndex())
             {
-                SceneManager.UnloadSceneAsync(loadedScene);
-                loadedScene = GetActiveSceneIndex();
+                try
+                {
+                    SceneManager.UnloadSceneAsync(loadedScene);
+                }
+                catch (System.Exception e)
+                {
+                    Debug.Log("Error while unloading scene at index " + index);
+                }
             }
+            loadedScene = GetActiveSceneIndex();
         }
     }
 

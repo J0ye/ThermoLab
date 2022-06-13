@@ -22,11 +22,11 @@ public class LookAtPlayer : MonoBehaviour
         if (player == null)
         {
             SetPlayer();
-            transform.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z + rotationOffset);
         }
         else
         {
             transform.LookAt(player.transform.position);
+            //transform.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z + rotationOffset);
         }
     }
 
