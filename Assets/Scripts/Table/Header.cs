@@ -11,7 +11,6 @@ public class Header : MonoBehaviour
     void Start()
     {
         SetUpList();
-        LoadInputFromSession();
     }
 
     public InputField GetFieldAt(int row, int line)

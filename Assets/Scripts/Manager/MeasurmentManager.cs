@@ -1,10 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
-public enum SaveState { Waiting, Declined, Accepted}
 
 public class MeasurmentManager : MonoBehaviour
 {
@@ -12,25 +11,41 @@ public class MeasurmentManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.activeSceneChanged += ChangedActiveScene;
         SetUpEditEvents();
-    }
-
-    public void ChangedActiveScene(Scene current, Scene next)
-    {
-        //SaveInput();
+        LoadInputFromSessionData();
+        Session.Instance().OnLogin += ReactToLogin;
     }
 
     public void SaveInput()
     {
-        if (Session.Instance().user != null)
+        if (!CheckUser())
         {
-            foreach (Header head in heads)
-            {
-                Session.Instance().AddTable(new Table(head.rows, head.name, Session.Instance().user));
-            }
-            Debug.Log(Session.Instance().ToJSON());
+            return;
         }
+
+        foreach (Header head in heads)
+        {
+            Session.Instance().AddTable(new Table(head.rows, head.name, Session.Instance().user));
+        }
+        Debug.Log("Saved session data");        
+    }
+
+    public void LoadInputFromSessionData()
+    {
+        if (!CheckUser())
+        {
+            return;
+        }
+
+        foreach (Header head in heads)
+        {
+            head.LoadInputFromSession();
+        }
+    }
+
+    public void ReactToLogin(object sender, EventArgs e)
+    {
+        LoadInputFromSessionData();
     }
 
     public bool EditTableEntryInSession(string nameOfHeader, Column newValue)
@@ -43,6 +58,15 @@ public class MeasurmentManager : MonoBehaviour
                 Session.Instance().tables[i].EditColumn(newValue);
                 return true;
             }
+        }
+        return false;
+    }
+
+    protected bool CheckUser()
+    {
+        if(Session.Instance().user != null)
+        {
+            return true;
         }
         return false;
     }
@@ -60,7 +84,7 @@ public class MeasurmentManager : MonoBehaviour
                     Column newValues = new Column(rowIndex, lineIndex, field.text);
                     field.onEndEdit.AddListener(delegate
                     {
-                        bool v = EditTableEntryInSession(head.name, newValues);
+                        SaveInput();
                     });
                     lineIndex++;
                 }

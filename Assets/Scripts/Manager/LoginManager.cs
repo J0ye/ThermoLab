@@ -41,7 +41,7 @@ public class LoginManager : MonoBehaviour
         }
         BinaryFormatter bf = new BinaryFormatter();
         string filename = newNameInput.text + "LoginData";
-        filename = MakeValidFileName(filename);
+        filename = Session.MakeValidFileName(filename);
         filename = "/" + filename + ".dat";
         FileStream file = File.Create(Application.persistentDataPath + filename);
         User newUser = new User(newNameInput.text, newPasswordInput.text);
@@ -82,12 +82,8 @@ public class LoginManager : MonoBehaviour
             if(u.Compare(temp))
             {
                 // There exists a user for this name and password. U represents the user data coresponding to user input
+                Session.SetUser(u);
                 OnLoginSuccsessfull.Invoke();
-                // Set the session data manualy to the logged in user, if no session data can be loaded
-                Session.Instance().user = u;
-                LoadSessionData();
-                Session.Instance().user = u;
-                Debug.Log("Login to user: " + Session.Instance().user.id);
                 return;
             }
         }
@@ -110,40 +106,7 @@ public class LoginManager : MonoBehaviour
 
     public void SaveSessionData()
     {
-        string id = GetUserIDAsValidFileName();
-        DirectoryInfo directory = Directory.CreateDirectory(Application.persistentDataPath + @"\Sessions");
-        if (Session.Instance().user != null)
-        {
-            string filename = directory.FullName + @"\" + id + ".json";
-            Debug.Log("Saving session data to: " + filename);
-            File.WriteAllText(filename, Session.Instance().ToJSON());
-        }
-    }
-
-    public bool LoadSessionData()
-    {
-        if (Session.Instance().user == null)
-        {
-            Debug.LogWarning("Tried to load session data without a user.");
-            return false;
-        }
-
-        string id = GetUserIDAsValidFileName() + ".json";
-
-        DirectoryInfo directoryInfo = new DirectoryInfo(Application.persistentDataPath + @"\Sessions");
-        if (directoryInfo.Exists)
-        {
-            foreach (var file in directoryInfo.GetFiles(id))
-            {
-                Debug.Log("File content");
-                string txt = File.ReadAllText(file.FullName);
-                Debug.Log(txt);
-                Session.FromJson(txt);
-                return true;
-            }
-        }
-
-        return false;
+        Session.SaveSessionData();
     }
 
     private bool CheckInputField(InputField target)
@@ -165,23 +128,5 @@ public class LoginManager : MonoBehaviour
         }
 
         return false;
-    }
-
-    private string GetIDAsValidFileName(string id)
-    {
-        return MakeValidFileName(id);
-    }
-
-    private string GetUserIDAsValidFileName()
-    {
-        return MakeValidFileName(Session.Instance().user.id.ToString());
-    }
-
-    private static string MakeValidFileName(string name)
-    {
-        string invalidChars = System.Text.RegularExpressions.Regex.Escape(new string(System.IO.Path.GetInvalidFileNameChars()));
-        string invalidRegStr = string.Format(@"([{0}]*\.+$)|([{0}]+)", invalidChars);
-
-        return System.Text.RegularExpressions.Regex.Replace(name, invalidRegStr, "_");
     }
 }

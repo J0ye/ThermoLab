@@ -26,9 +26,12 @@ public class User
 
     public bool Compare(User other)
     {
-        if (name == other.name && password == other.password)
+        if(other != null)
         {
-            return true;
+            if (name == other.name && password == other.password)
+            {
+                return true;
+            }
         }
 
         return false;
