@@ -14,7 +14,6 @@ public class StepCountManager : MonoBehaviour
     public void UpdateDisplay(int val)
     {
         val = Mathf.Clamp(val, 0, steps.Count - 1);
-        Debug.Log(val);
         int counter = 1;
         foreach(SwitchImage si in steps)
         {

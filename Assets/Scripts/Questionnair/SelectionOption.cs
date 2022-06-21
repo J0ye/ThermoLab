@@ -16,9 +16,7 @@ public class SelectionOption : ImageColorSwitch, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(!keepColor) SwitchColor();
         ExecuteOnSelection();
-        OnSelect.Invoke();
     }
 
     public void SetText(string value)
@@ -28,9 +26,11 @@ public class SelectionOption : ImageColorSwitch, IPointerDownHandler
         option.text = value;
     }
 
-    protected void ExecuteOnSelection()
+    public void ExecuteOnSelection()
     {
+        if (!keepColor) SwitchColor();
         selected = !selected;
+        OnSelect.Invoke();
     }
 
     protected void RegisterTextComponent()

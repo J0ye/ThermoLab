@@ -36,7 +36,7 @@ public class Header : MonoBehaviour
     
     public void LoadInputFromSession()
     {
-        if(Session.Instance().user != null && Session.Instance().tables.Length > 0)
+        if(Session.CheckUser() && Session.Instance().tables.Length > 0)
         {
             Table[] tables = Session.Instance().tables;
             for (int i = 0; i < tables.Length; i++)

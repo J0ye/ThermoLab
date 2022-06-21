@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 
 public class QuestionController : MonoBehaviour
 {
@@ -13,7 +14,8 @@ public class QuestionController : MonoBehaviour
     [Range(0f, 5f)]
     public float animationDuration = 0.5f;
 
-    protected List<SelectionOption> spawnedOptions = new List<SelectionOption>();
+    [HideInInspector]
+    public List<SelectionOption> spawnedOptions = new List<SelectionOption>();
     protected RectTransform rt;
     protected Tween activeTween;
     protected Text titel;
@@ -74,10 +76,26 @@ public class QuestionController : MonoBehaviour
         StartCoroutine(AsynClose());
     }
 
+    public void LoadInputFromSession(Question question)
+    {
+        Debug.Log("Loading input for: " + titel.text);
+        for(int i = 0; i < question.selections.Length; i++)
+        {
+            if(i < spawnedOptions.Count)
+            {
+                if(question.selections[i])
+                {
+                    spawnedOptions[i].ExecuteOnSelection();
+                    Debug.Log(titel.text + " gets a selected option");
+                }
+            }
+        }
+    }
+
     public void CheckSelection()
     {
         Question check = new Question(titel.text, spawnedOptions);
-        Debug.Log("Json: " + check.JSON());
+        Debug.Log("Json: " + check.ToJSON());
     }
 
     public Question GetQuestion()
@@ -124,6 +142,8 @@ public class QuestionController : MonoBehaviour
     }
 }
 
+
+[Serializable]
 public class Question
 {
     public string titel = "0";
@@ -150,7 +170,7 @@ public class Question
         selections = temp;
     }
 
-    public string JSON()
+    public string ToJSON()
     {
         return JsonUtility.ToJson(this);
     }

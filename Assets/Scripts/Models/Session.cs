@@ -9,6 +9,9 @@ public class Session
 {
     public User user;
     public Table[] tables;
+    public Questionaire questionair;
+
+    public event EventHandler OnLogin;
 
     protected static Session instance;
     #region Static Methods
@@ -19,6 +22,7 @@ public class Session
             instance = new Session();
             instance.user = new User();
             instance.tables = new Table[0];
+            instance.questionair = new Questionaire();
         }
         return instance;
     }
@@ -34,6 +38,15 @@ public class Session
         LoadSessionData();
         Debug.Log("Succesfull login to user: " + newUser.name + " | " + newUser.id);
         Instance().OnLogin?.Invoke(Instance(), EventArgs.Empty);
+    }
+
+    public static bool CheckUser()
+    {
+        if (Instance().user != null)
+        {
+            return true;
+        }
+        return false;
     }
 
     /// <summary>
@@ -118,7 +131,16 @@ public class Session
         tables = null;
     }
 
-    public event EventHandler OnLogin;
+    public void ClearAllLoginEvents()
+    {
+        if(OnLogin != null)
+        {
+            foreach (Delegate d in OnLogin.GetInvocationList())
+            {
+                OnLogin -= (EventHandler)d;
+            }
+        }
+    }
 
     #region JSON Methods
     public string ToJSON()

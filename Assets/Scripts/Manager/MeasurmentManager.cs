@@ -13,12 +13,13 @@ public class MeasurmentManager : MonoBehaviour
     {
         SetUpEditEvents();
         LoadInputFromSessionData();
+        Session.Instance().ClearAllLoginEvents();
         Session.Instance().OnLogin += ReactToLogin;
     }
 
     public void SaveInput()
     {
-        if (!CheckUser())
+        if (!Session.CheckUser())
         {
             return;
         }
@@ -32,7 +33,7 @@ public class MeasurmentManager : MonoBehaviour
 
     public void LoadInputFromSessionData()
     {
-        if (!CheckUser())
+        if (!Session.CheckUser())
         {
             return;
         }
@@ -58,15 +59,6 @@ public class MeasurmentManager : MonoBehaviour
                 Session.Instance().tables[i].EditColumn(newValue);
                 return true;
             }
-        }
-        return false;
-    }
-
-    protected bool CheckUser()
-    {
-        if(Session.Instance().user != null)
-        {
-            return true;
         }
         return false;
     }
