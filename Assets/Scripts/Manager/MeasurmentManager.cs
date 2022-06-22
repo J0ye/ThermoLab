@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class MeasurmentManager : MonoBehaviour
 {
     public List<Header> heads = new List<Header>();
+    public Text debugOutput;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,9 +36,11 @@ public class MeasurmentManager : MonoBehaviour
     {
         if (!Session.CheckUser())
         {
+            if (debugOutput != null) debugOutput.text += "No user. Quiting load" + "\n";
             return;
         }
 
+        if (debugOutput != null) debugOutput.text = "Data found writing into table" + "\n";
         foreach (Header head in heads)
         {
             head.LoadInputFromSession();
@@ -46,6 +49,7 @@ public class MeasurmentManager : MonoBehaviour
 
     public void ReactToLogin(object sender, EventArgs e)
     {
+        debugOutput.text += "Reacting" + "\n";
         LoadInputFromSessionData();
     }
 

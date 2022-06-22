@@ -36,23 +36,37 @@ public class Header : MonoBehaviour
     
     public void LoadInputFromSession()
     {
-        if(Session.CheckUser() && Session.Instance().tables.Length > 0)
+        MeasurmentManager mm;
+        if(GameObject.Find("Manager").TryGetComponent<MeasurmentManager>(out mm))
+        {
+            if(mm.debugOutput != null) mm.debugOutput.text += "Writing info for " + gameObject.name + "\n";
+        }
+
+        if (Session.CheckUser() && Session.Instance().tables.Length > 0)
         {
             Table[] tables = Session.Instance().tables;
+            if (mm.debugOutput != null) mm.debugOutput.text += "Länge: " + tables.ToString() + "\n";
+            if (mm.debugOutput != null) mm.debugOutput.text += "Länge: " + tables.Length + "\n";
             for (int i = 0; i < tables.Length; i++)
             {
                 if (tables[i].name == gameObject.name)
                 {
+                    if (mm.debugOutput != null) mm.debugOutput.text += "There should be data for " + gameObject.name + "\n";
                     for (int j = 0; j < tables[i].columns.Length; j++)
                     {
                         Column target = tables[i].columns[j];
                         rows[target.row].lines[target.line].text = target.content;
                     }
                 }
+                else
+                {
+                    if (mm.debugOutput != null) mm.debugOutput.text += "Names dont fit for " + tables[i].name + " and " + gameObject.name + "\n";
+                }
             }
         }
         else
         {
+            if(mm != null && mm.debugOutput != null) mm.debugOutput.text += "Error while loading data in head " + gameObject.name + "\n";
             try
             {
                 Debug.LogWarning("Cant load table data");
