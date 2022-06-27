@@ -12,6 +12,8 @@ public class Session
     public Questionaire questionair;
 
     public event EventHandler OnLogin;
+    public event EventHandler OnLogout;
+    public event EventHandler OnSaved;
 
     protected static Session instance;
     #region Static Methods
@@ -60,12 +62,17 @@ public class Session
             return;
         }
         string id = GetUserIDAsValidFileName();
-        DirectoryInfo directory = Directory.CreateDirectory(Application.persistentDataPath + @"\Sessions");
+        DirectoryInfo directory = Directory.CreateDirectory(Application.persistentDataPath + GetSessionFolderName());
         if (Instance().user != null)
         {
-            string filename = directory.FullName + @"\" + id + ".json";
+            string filename = GetUserIDAsFileName(directory.FullName);
+            if(!File.Exists(filename))
+            {
+                File.Create(filename);
+            }
             Debug.Log("Saving session data to: " + filename);
             File.WriteAllText(filename, Instance().ToJSON());
+            Instance().OnSaved?.Invoke(Instance(), EventArgs.Empty);
         }
     }
 
@@ -82,7 +89,7 @@ public class Session
         }
         string id = GetUserIDAsValidFileName() + ".json";
 
-        DirectoryInfo directoryInfo = new DirectoryInfo(Application.persistentDataPath + @"\Sessions");
+        DirectoryInfo directoryInfo = Directory.CreateDirectory(Application.persistentDataPath + GetSessionFolderName());
         if (directoryInfo.Exists)
         {
             foreach (var file in directoryInfo.GetFiles(id))
@@ -111,6 +118,18 @@ public class Session
         return MakeValidFileName(Instance().user.id.ToString());
     }
 
+    public static string GetUserIDAsFileName(string fulldirectoryName)
+    {
+        string ret = fulldirectoryName + @"\" + MakeValidFileName(Instance().user.id.ToString()) + ".json";
+
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            ret = fulldirectoryName + @"/" + MakeValidFileName(Instance().user.id.ToString()) + ".json";
+            return ret;
+        }
+        return MakeValidFileName(Instance().user.id.ToString());
+    }
+
     /// <summary>
     /// Creates a string that can be used as a file name
     /// </summary>
@@ -123,12 +142,24 @@ public class Session
 
         return System.Text.RegularExpressions.Regex.Replace(name, invalidRegStr, "_");
     }
+
+    public static string GetSessionFolderName()
+    {
+        if(Application.platform == RuntimePlatform.Android)
+        {
+            return @"/Sessions";
+        }
+
+        return @"\Sessions";
+    }
     #endregion
 
     public void Clear()
     {
         user = null;
         tables = null;
+        questionair = null;
+        Instance().OnLogout?.Invoke(Instance(), EventArgs.Empty);
     }
 
     public void ClearAllLoginEvents()

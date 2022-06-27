@@ -29,7 +29,9 @@ public class MeasurmentManager : MonoBehaviour
         {
             Session.Instance().AddTable(new Table(head.rows, head.name, Session.Instance().user));
         }
-        Debug.Log("Saved session data");        
+        Debug.Log("Saved session data");
+        if (debugOutput != null) debugOutput.text = "Saving table in " + Application.persistentDataPath + Session.GetSessionFolderName() + "\n";
+        Session.SaveSessionData();
     }
 
     public void LoadInputFromSessionData()

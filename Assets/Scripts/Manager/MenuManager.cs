@@ -62,6 +62,12 @@ public class MenuManager : MonoBehaviour
         UpdateState();
     }
 
+    public void Close()
+    {
+        Scene popupScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
+        SceneManager.UnloadSceneAsync(popupScene.name);
+    }
+
     protected int GetActiveSceneIndex()
     {
         return SceneManager.GetActiveScene().buildIndex;

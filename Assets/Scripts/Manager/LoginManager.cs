@@ -63,6 +63,8 @@ public class LoginManager : MonoBehaviour
             User newUserData = (User)bf.Deserialize(openFile);
             openFile.Close();
             userData.Add(newUserData);
+            Debug.Log("File loaded from " + file.FullName);
+            WritePopUpMessage("Loaded " + newUserData.name + " from " + file.FullName);
         }
     }
 
@@ -84,16 +86,22 @@ public class LoginManager : MonoBehaviour
                 // There exists a user for this name and password. U represents the user data coresponding to user input
                 Session.SetUser(u);
                 OnLoginSuccsessfull.Invoke();
+                WritePopUpMessage("Logged in to " + u.name, Color.green);
+                WritePopUpMessage("Data: " + Session.Instance().ToJSON(), Color.green);
                 return;
             }
         }
 
         Debug.Log("No login");
         OnLoginUnsuccsessfull.Invoke();
+        WritePopUpMessage("No Login found for " + nameInput.text, Color.red);
     }
 
     public void Logout()
     {
+        WritePopUpMessage("Loggin out from " + Session.Instance().user, Color.green);
+        WritePopUpMessage("Saving " + Session.Instance().ToJSON());
+        Session.Instance().OnLogin += MessageEvent;
         SaveSessionData();
         if(Session.Instance().user == null)
         {
@@ -102,11 +110,43 @@ public class LoginManager : MonoBehaviour
         }
 
         Session.Instance().Clear();
+        OnLogout.Invoke();
     }
 
     public void SaveSessionData()
     {
         Session.SaveSessionData();
+    }
+
+    protected void MessageEvent(object sender, EventArgs e)
+    {
+        WritePopUpMessage("Saved", Color.red);
+    }
+
+    public void WritePopUpMessage(string text)
+    {
+        PopUpManager pm;
+        if (TryGetComponent<PopUpManager>(out pm))
+        {
+            pm.WriteMessage(text);
+        }
+        else
+        {
+            Debug.LogWarning("Could not write message. There is no PopUpManager on " + gameObject.name);
+        }
+    }
+
+    public void WritePopUpMessage(string text, Color color)
+    {
+        PopUpManager pm;
+        if(TryGetComponent<PopUpManager>(out pm))
+        {
+            pm.WriteMessage(text, color);
+        }
+        else
+        {
+            Debug.LogWarning("Could not write message. There is no PopUpManager on " + gameObject.name);
+        }
     }
 
     private bool CheckInputField(InputField target)
