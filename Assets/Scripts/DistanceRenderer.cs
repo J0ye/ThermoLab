@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,10 @@ public class DistanceRenderer : MonoBehaviour
     public List<GameObject> targets = new List<GameObject>();
     [Header("UI Settings")]
     public Text uiText;
+    public Text uiAngelText;
     public bool renderLine = true;
     public bool renderText = false;
+    public bool renderAngel = false;
 
     protected LineRenderer lr;
     protected Dictionary<GameObject, GameObject> targetDisplayDicitionary = new Dictionary<GameObject, GameObject>();
@@ -26,6 +29,7 @@ public class DistanceRenderer : MonoBehaviour
         {
             PaintLine();
             DisplayDistance();
+            if (renderAngel) DisplayAngel();
         }
     }
 
@@ -114,6 +118,14 @@ public class DistanceRenderer : MonoBehaviour
                 targetDisplayDicitionary[target].SetActive(false);
                 if (uiText != null) uiText.text = "No Tracking";
             }
+        }
+    }
+
+    private void DisplayAngel()
+    {
+        if(targets.Count > 0)
+        {
+
         }
     }
 

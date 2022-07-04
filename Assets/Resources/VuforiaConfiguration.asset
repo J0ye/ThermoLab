@@ -13,19 +13,18 @@ MonoBehaviour:
   m_Name: VuforiaConfiguration
   m_EditorClassIdentifier: 
   vuforia:
-    vuforiaLicenseKey: AeAS8+r/////AAABmZGsNR3lk0dAlQXgQTMxP3VVFHUbJbtI3R2ol0l/k93Qm5BUlBT52OUWbWsv4O9fnYHS353RiIa6LGRLi8d8azswrVLwLTMU0PKq4rhdz5QRJSUpOJk9ymdlj+wYpJ930a2tMYxAimtqE5ifcCdyDEbyHnR0OCr3QqDI5LrE0qTtQcMQgdq+VLClf2lXyjIR/37bEeHs9mYOMna7mVyYC5PylLJrgbScC0qKyvH3a1NJ3prxbaVAYUXOKFTyvUsoekyZZ21GQrnpRnhxVf5xTxj7p4tjHEjYp9cNAJ8CcbLYYqY25SrkoEhv66fzzmZtthpxmoCSzzDcF8JWH5PSjzVG7vWLybc51SOBEJHoBGJv
-    ufoLicenseKey: QVpqT0p4di8vLy8vQUFBQUtMb1dxU0sxTzBVaGpVVGJmV0ZsK0x3d0tyczNGQWRPaVBlL292bXJLMGwrYm1ReXNqeTdwZm1kNHpGc0FwaUhZajRLeTllL2pYTlNKaE1FNDMzQXJjTTFsQmNPdkR3VlpPdEl6ckgxSEdTQ08vaXk4L0h1WEt2ZXhnTHdNK2V5bVV6VUtGSHVZYUdwQllDRHFEN2xjNXNKdm1vRFRCUk9FMHNQbzZzbFJmTHNWemlNeUozOWV2R0Q1Zmdrd2UzUmRpOCt4L0o4UC84MU55TWdZYTdxOWlUSVJnWTVOalZVUGVCZkU3MHdkSzhYZzRyZWN6a1cxaXd1eGc5SEVFUDhzcVd0d0t4WEQ5R2h1YXUyWHU1bkxHUGRGQjV2b0hoRE9lVTNwdVU5NExWRGhnL2gxYUU4UDBKN2V5VCt0bk1vMWFjMzhvZTFhOC93dXc0WFdmd1NjYVZVcHNWcExBS0N6cjdKcnBIYUEwRW8=
+    vuforiaLicenseKey: 
+    ufoLicenseKey: QVJOajBoai8vLy8vQUFBQUtPeGVCdXpEY1V2MHI3NldKNHpSNm1zS2JDRzBaWlc5dHN2RXhJWUxXR0RiT2lXOXFmbDVsOERpWDF6VDEyRHB0Mk8ycVcrajNGR29lT0pPTFZMdEVsb21XaExVNVczTHcvUVdhLzlJUjM4WXlZbFV4eXU2LzBWUi9kSVd2YWpRMkVlYm9zaHMwZHZsVy9kMktINjY0SWFCZmtrU0YrL1BVKzZrajJRclF2dnVnVG8xUXVNUGVFcFVOTi9XVFVNWmgxWktKeHh4RWtCaVBxU2dMbmF1dkpuTUxNR25jUTkxVmRITzQrMkFHVzVSSDl6VWRuMnhrdXduc0V3ckpJeEFaNVdBSXJtL0szNUdMdkwybVFxc29oQXhwQWdYUUg2aWlGVEpPWXBQeTJya29vRjlKSVNOMnlxc2hqcUhtTDErbVV3b0tqd3RnNTZSQ0xpczh3eS9wajM2dElQY0F1bktKNVNRTXdPMSt1MHQ=
     delayedInitialization: 0
-    cameraFocusModeSetting: 0
+    cameraFocusModeSetting: 2
     cameraDeviceModeSetting: -1
-    maxSimultaneousImageTargets: 5
-    maxSimultaneousObjectTargets: 1
+    maxSimultaneousImageTargets: 1
     virtualSceneScaleFactor: 1
-    useDelayedLoadingObjectTargets: 0
-    modelTargetRecoWhileExtendedTracked: 0
+    modelTargetRecoWhileExtendedTracked: 1
     shareRecordingsInITunes: 0
-    version: 10.6.3
-    eulaAcceptedVersions: '{"Values":["","0.0","10.6"]}'
+    logLevel: 0
+    version: 10.0.2
+    eulaAcceptedVersions: '{"Values":["","7.2","7.5","8.0","0.0","10.8"]}'
   database:
     disableModelExtraction: 0
   shaders:
@@ -38,7 +37,7 @@ MonoBehaviour:
     videoBackgroundEnabled: 1
   deviceTracker:
     autoStartTracker: 1
-    arcoreRequirement: 2
+    arcoreRequirement: 1
     autoImportArcore: 1
     thirdPartyARCoreClientDetected: 0
   playmode:
