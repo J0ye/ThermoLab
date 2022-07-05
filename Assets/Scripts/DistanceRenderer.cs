@@ -125,7 +125,12 @@ public class DistanceRenderer : MonoBehaviour
     {
         if(targets.Count > 0)
         {
-
+            // The angel can be calculated by using
+            // distance = 0.23*angel+25
+            var target = targets[0];
+            float dist = calculatedDistances[target];
+            float angel = (float)(dist/0.23)-25;
+            uiAngelText.text = angel.ToString();
         }
     }
 

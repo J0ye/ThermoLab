@@ -423,6 +423,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SwitchScene
       objectReference: {fileID: 0}
+    - target: {fileID: 1504571263870678912, guid: 947ff90f6e0244042b22280420949734,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1504571263870678913, guid: 947ff90f6e0244042b22280420949734,
         type: 3}
       propertyPath: m_Color.a
