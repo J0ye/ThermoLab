@@ -32,6 +32,12 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1868921480213082622, guid: 4a877351c9325f64ca662f7f574370e3,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 895c8f1fcf02cba4488050345fd94746,
+        type: 3}
     - target: {fileID: 5742705885344808345, guid: 4a877351c9325f64ca662f7f574370e3,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1458,6 +1464,12 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1868921480213082622, guid: 4a877351c9325f64ca662f7f574370e3,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 895c8f1fcf02cba4488050345fd94746,
+        type: 3}
     - target: {fileID: 5742705885344808345, guid: 4a877351c9325f64ca662f7f574370e3,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3022,6 +3034,12 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1868921480213082622, guid: 4a877351c9325f64ca662f7f574370e3,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 895c8f1fcf02cba4488050345fd94746,
+        type: 3}
     - target: {fileID: 5742705885344808345, guid: 4a877351c9325f64ca662f7f574370e3,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3904,6 +3922,12 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1868921480213082622, guid: 4a877351c9325f64ca662f7f574370e3,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 895c8f1fcf02cba4488050345fd94746,
+        type: 3}
     - target: {fileID: 5742705885344808345, guid: 4a877351c9325f64ca662f7f574370e3,
         type: 3}
       propertyPath: m_Pivot.x

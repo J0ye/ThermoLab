@@ -51,7 +51,7 @@ public class MeasurmentManager : MonoBehaviour
 
     public void ReactToLogin(object sender, EventArgs e)
     {
-        debugOutput.text += "Reacting" + "\n";
+        if(debugOutput != null) debugOutput.text += "Reacting" + "\n";
         LoadInputFromSessionData();
     }
 
