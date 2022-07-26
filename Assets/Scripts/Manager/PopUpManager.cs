@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PopUpManager : MonoBehaviour
 {
     public GameObject prefab;
+    public bool writeDebug = false;
     public List<Color> colors = new List<Color>();
     public float duration = 1f;
     public float margin = 30f;
@@ -14,6 +15,7 @@ public class PopUpManager : MonoBehaviour
 
     public void WriteMessage(string msgtext)
     {
+        if (!writeDebug) return;
         GameObject msgObj = Instantiate(prefab, transform);
         Text text;
         if (msgObj.transform.childCount > 0)
@@ -30,6 +32,7 @@ public class PopUpManager : MonoBehaviour
 
     public void WriteMessage(string msgtext, int colorIndex)
     {
+        if (!writeDebug) return;
         GameObject msgObj = Instantiate(prefab, transform);
         Text text;
         if (msgObj.transform.childCount > 0)
@@ -51,6 +54,7 @@ public class PopUpManager : MonoBehaviour
 
     public void WriteMessage(string msgtext, Color newColor)
     {
+        if (!writeDebug) return;
         GameObject msgObj = Instantiate(prefab, transform);
         Text text;
         if (msgObj.transform.childCount > 0)
