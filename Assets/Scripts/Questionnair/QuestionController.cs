@@ -28,6 +28,7 @@ public class QuestionController : MonoBehaviour
         titel = transform.GetChild(0).GetComponent<Text>();
         description = transform.GetChild(1).GetComponent<Text>();
         image = transform.GetChild(2).GetComponent<Image>();
+        LoadContent();
     }
 
     private void Update()
@@ -40,23 +41,6 @@ public class QuestionController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
             Close();
-        }
-    }
-
-    void FixedUpdate()
-    {
-        if(content != null)
-        {
-            titel.text = content.titel;
-            description.text = content.description;
-            if (content.image != null && image.gameObject.activeSelf == true)
-            {
-                image.sprite = content.image;
-            }else
-            {
-                image.gameObject.SetActive(false);
-            }
-            if(spawnedOptions.Count == 0) SpawnOptions();
         }
     }
 
@@ -124,14 +108,62 @@ public class QuestionController : MonoBehaviour
         }
     }
 
+    protected void LoadContent()
+    {
+        if (content != null)
+        {
+            titel.text = content.titel;
+            description.text = content.description;
+            if (content.image != null && image.gameObject.activeSelf == true)
+            {
+                image.sprite = content.image;
+            }
+            else
+            {
+                image.gameObject.SetActive(false);
+            }
+            if (spawnedOptions.Count == 0) SpawnOptions();
+        }
+    }
+
     protected void SpawnOptions()
     {
         int counter = 0;
-        foreach(string option in content.options)
+        foreach (string option in content.options)
         {
             GameObject opt = Instantiate(optionPrefab, transform);
             Vector3 p = opt.GetComponent<RectTransform>().position;
-            var padding = opt.GetComponent<RectTransform>().sizeDelta.y * margin;
+            var padding = 0f;
+            if (content.GetType() == typeof(ScriptableImageQuestion))
+            {
+                foreach (Transform child in opt.transform)
+                {
+                    if (child.name == "ImageOption")
+                    {
+                        child.gameObject.SetActive(true);
+                        ScriptableImageQuestion imageContent = (ScriptableImageQuestion)content;
+                        Image img = child.GetComponent<Image>();
+                        img.sprite = imageContent.imageOptions[counter];
+                        img.SetNativeSize();
+                    }
+                }
+            }
+            if (counter != 0)
+            {
+                SelectionOption previous = spawnedOptions[counter - 1];
+                Image img;
+                if (previous.transform.GetChild(2).TryGetComponent<Image>(out img) && previous.transform.GetChild(2).gameObject.activeSelf)
+                {
+                    RectTransform rt = img.GetComponent<RectTransform>();
+                    Debug.Log("Padding from image");
+                }
+                else
+                {
+                    RectTransform rt = spawnedOptions[counter - 1].GetComponent<RectTransform>();
+                    Debug.Log("Padding from text");
+                }
+                padding = (rt.sizeDelta.y * rt.localScale.y) + margin;
+            }
             opt.GetComponent<RectTransform>().position = new Vector3(p.x, p.y - (padding * counter), p.z);
             SelectionOption detail = opt.GetComponent<SelectionOption>();
             spawnedOptions.Add(detail);
