@@ -9,12 +9,12 @@ public class QuestionController : MonoBehaviour
 {
     public GameObject optionPrefab;
     public ScriptableQuestion content;
-    [Range(0f, 100f)]
-    public float margin = 25f;
+    [Range(0f, 1f)]
+    public float margin = 0.5f;
     [Range(0f, 5f)]
     public float animationDuration = 0.5f;
 
-    [HideInInspector]
+    //[HideInInspector]
     public List<SelectionOption> spawnedOptions = new List<SelectionOption>();
     protected RectTransform rt;
     protected Tween activeTween;
@@ -148,21 +148,20 @@ public class QuestionController : MonoBehaviour
                     }
                 }
             }
-            if (counter != 0)
+            if (counter > 0)
             {
                 SelectionOption previous = spawnedOptions[counter - 1];
                 Image img;
+                RectTransform rect;
                 if (previous.transform.GetChild(2).TryGetComponent<Image>(out img) && previous.transform.GetChild(2).gameObject.activeSelf)
                 {
-                    RectTransform rt = img.GetComponent<RectTransform>();
-                    Debug.Log("Padding from image");
+                    rect = img.GetComponent<RectTransform>();
                 }
                 else
                 {
-                    RectTransform rt = spawnedOptions[counter - 1].GetComponent<RectTransform>();
-                    Debug.Log("Padding from text");
+                    rect = spawnedOptions[counter - 1].GetComponent<RectTransform>();
                 }
-                padding = (rt.sizeDelta.y * rt.localScale.y) + margin;
+                padding = (rect.sizeDelta.y * rect.localScale.y) + margin;
             }
             opt.GetComponent<RectTransform>().position = new Vector3(p.x, p.y - (padding * counter), p.z);
             SelectionOption detail = opt.GetComponent<SelectionOption>();
