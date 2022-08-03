@@ -127,8 +127,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 47.553978, y: 42}
-  m_SizeDelta: {x: 4200, y: 239.44}
+  m_AnchoredPosition: {x: -25.2292, y: 42}
+  m_SizeDelta: {x: 3200, y: 239.44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1620276116435196418
 CanvasRenderer:
@@ -274,9 +274,9 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 1
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Description of question. This can hold a longer text, or a full paragraph.
+  m_Text: 
 --- !u!1 &6150538880361646143
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +288,7 @@ GameObject:
   - component: {fileID: 7794275509131937121}
   - component: {fileID: 1609108497676726242}
   - component: {fileID: 263192757612412019}
+  - component: {fileID: 5230146026753285795}
   m_Layer: 5
   m_Name: ImageOption
   m_TagString: Untagged
@@ -304,16 +305,16 @@ RectTransform:
   m_GameObject: {fileID: 6150538880361646143}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 1620276116435196422}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1144.6499, y: -445.7442}
-  m_SizeDelta: {x: 1156.916, y: 1130.929}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -1248.5944, y: -78.77289}
+  m_SizeDelta: {x: 1156.916, y: 1167.972}
+  m_Pivot: {x: 0.14648242, y: 0.87934846}
 --- !u!222 &1609108497676726242
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -342,7 +343,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: f0d9bcb0daf31468385cd551f205df5a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -352,3 +353,33 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5230146026753285795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6150538880361646143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f91c7c9fcb68ec4c94f9ae255b63d00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullscreenPrefab: {fileID: 7113256380835543938, guid: 211079eb4a7713d4cab6aa980823461b,
+    type: 3}
+  setNativeSize: 1
+  OnPress:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5230146026753285795}
+        m_TargetAssemblyTypeName: OpenFullScreen, Assembly-CSharp
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -29,4 +29,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Drawer.unity
     guid: 9be738879192c9647b0730d4a2f0247b
+  - enabled: 1
+    path: Assets/Scenes/Model.unity
+    guid: 6e0f6549e37a1ad4880ae4ce5a01c607
+  - enabled: 1
+    path: Assets/Scenes/ModelBright.unity
+    guid: 5abe33fb79902e441b84a3b97719db90
+  - enabled: 1
+    path: Assets/Scenes/ModelAR.unity
+    guid: 0ca1892ca18aba94cb627332f0daef80
   m_configObjects: {}

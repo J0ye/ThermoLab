@@ -9,7 +9,7 @@ public class QuestionController : MonoBehaviour
 {
     public GameObject optionPrefab;
     public ScriptableQuestion content;
-    [Range(0f, 1f)]
+    [Range(0f, 50f)]
     public float margin = 0.5f;
     [Range(0f, 5f)]
     public float animationDuration = 0.5f;
@@ -145,6 +145,10 @@ public class QuestionController : MonoBehaviour
                         Image img = child.GetComponent<Image>();
                         img.sprite = imageContent.imageOptions[counter];
                         img.SetNativeSize();
+                        if(imageContent.setNativeSizeOnClick)
+                        {
+                            child.GetComponent<OpenFullScreen>().setNativeSize = true;
+                        }
                     }
                 }
             }
@@ -152,23 +156,19 @@ public class QuestionController : MonoBehaviour
             {
                 SelectionOption previous = spawnedOptions[counter - 1];
                 Image img;
-                RectTransform rect;
+                RectTransform lastSelectable = spawnedOptions[counter - 1].GetComponent<RectTransform>();
                 if (previous.transform.GetChild(2).TryGetComponent<Image>(out img) && previous.transform.GetChild(2).gameObject.activeSelf)
                 {
-                    rect = img.GetComponent<RectTransform>();
+                    RectTransform rect = img.GetComponent<RectTransform>();
+                    padding = (rect.sizeDelta.y * (rect.localScale.y * lastSelectable.localScale.y));
                 }
-                else
-                {
-                    rect = spawnedOptions[counter - 1].GetComponent<RectTransform>();
-                }
-                padding = (rect.sizeDelta.y * rect.localScale.y) + margin;
+                padding += lastSelectable.sizeDelta.y * lastSelectable.localScale.y + margin;
             }
             opt.GetComponent<RectTransform>().position = new Vector3(p.x, p.y - (padding * counter), p.z);
             SelectionOption detail = opt.GetComponent<SelectionOption>();
             spawnedOptions.Add(detail);
             detail.SetText(option);
             counter++;
-            //margin * spawnedOptions.Count
         }
     }
 }

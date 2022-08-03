@@ -7,4 +7,5 @@ using UnityEngine.UI;
 public class ScriptableImageQuestion : ScriptableQuestion
 {
     public List<Sprite> imageOptions = new List<Sprite>();
+    public bool setNativeSizeOnClick = false;
 }

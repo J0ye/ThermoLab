@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titel: Bildertitel
   description: "Die Beschreibung der Frage mit Bilder als Antwortm\xF6glichkeit."
-  image: {fileID: 21300000, guid: f0d9bcb0daf31468385cd551f205df5a, type: 3}
+  image: {fileID: 0}
   correctOptions: 0100000002000000
   options:
   - 'Option 1 mit diesem Text und diesem Bild:'
