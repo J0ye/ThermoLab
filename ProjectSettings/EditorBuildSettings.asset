@@ -38,4 +38,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ModelAR.unity
     guid: 0ca1892ca18aba94cb627332f0daef80
+  - enabled: 1
+    path: Assets/Scenes/DeskModel.unity
+    guid: f0bfe8ec72ccdf240baa4810de346634
+  - enabled: 1
+    path: Assets/Scenes/XRTest.unity
+    guid: 384109c7f16365046ac86bcc6a176364
   m_configObjects: {}

@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="ModellE" size="1.000000 1.000000" />
+    <ImageTarget name="StationC" size="1.000000 1.000000" />
+    <ImageTarget name="StationB" size="1.000000 1.000000" />
+    <ImageTarget name="StationA" size="1.000000 1.000000" />
+    <ImageTarget name="Pictogram_00" size="1.000000 1.000000" />
+    <ImageTarget name="Pictogram_09" size="1.000000 1.000000" />
+    <ImageTarget name="Pictogram_08" size="1.000000 1.000000" />
+    <ImageTarget name="Simple2" size="1.000000 1.011236" />
+    <ImageTarget name="Simple1" size="1.000000 1.028736" />
     <ImageTarget name="bit_marker2" size="1.000000 1.000000" />
     <ImageTarget name="bit_marker" size="1.000000 1.000000" />
     <ImageTarget name="Thermolabtarget4" size="1.000000 1.000000" />
